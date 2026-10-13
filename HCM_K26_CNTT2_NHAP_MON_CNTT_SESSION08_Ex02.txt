@@ -1,0 +1,29 @@
+SESSION08
+Bài 2 : Xử lý sự cố Website từ Access Log
+
+Tên lớp: HCM K26 CNTT2
+Môn học: Nhập môn công nghệ thông tin
+Họ và tên: LƯƠNG THANH THƯ
+
+Phần 1: Phân tích.
+
++ Sự nhầm lẫn của An: An dùng lệnh tìm tên tệp để tìm nội dung bên trong tệp. 
+
++ -Filter "*404*" chỉ lọc những tệp có chữ 404 trong tên (ví dụ page404.txt).
+
++ access.log không có chữ 404 trong tên, và Get-ChildItem không mở tệp ra đọc, nên không trả về kết quả nào.
+
++ Get-ChildItem: liệt kê tệp/thư mục và lọc theo tên, vị trí. Ví dụ: như tra danh mục để biết sách nằm ở kệ nào.
+
++ Select-String: mở tệp ra đọc và tìm theo nội dung bên trong, trả về các dòng khớp từ khóa. Ví dụ: như mở sách ra tìm câu chứa từ cần tìm.
+
+Phần 2: Lệnh chuẩn trên PowerShell
+Lọc từ khóa error, không phân biệt hoa thường, kèm số dòng:
+
+powershell
+Select-String -Path access.log -Pattern "error"
+
+Mở rộng (lọc cả 404 và ERROR như bối cảnh):
+powershell
+
+Select-String -Path access.log -Pattern "404|error"
